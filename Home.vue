@@ -11,8 +11,8 @@
           Hasta Girişi
       </a>
       <div class="lower-page-div">
-        <h1>Save time for buying cars!</h1>
-        <p>We will search the autogaleries for your dream car.</p>
+        <h1>HASTANEMİZE HOŞGELDİNİZ</h1>
+        <p></p>
       </div>
       <img class="tobb-etu-png" src="@/assets/tobbetu.png"/>   
 
@@ -66,5 +66,7 @@ export default {
   width: 5%;
   right: 0;
 }
+
+
 
 </style>

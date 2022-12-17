@@ -20,8 +20,7 @@
         </div>
 
         <div class="lower-page-div">
-            <h1>Save time for buying cars!</h1>
-            <p>We will search the autogaleries for your dream car.</p>
+            <h1>Hastanemize Hoşgeldiniz</h1>
         </div>
 
 
@@ -42,49 +41,51 @@
 
             }
         },
-
-        created() {
-
-            fetch("http://127.0.0.1:5000/brands")
-                .then(async response => {
-                    const data = await response.json();
-
-                    if (!response.ok) {
-                        const error = (data && data.message) || response.statusText;
-                        return Promise.reject(error);
-                    }
-                    this.brands = data;
-                })
-                .catch(error => {
-                    this.errorMessage = error;
-                    console.error("There was an error!", error);
-                });
-
-            fetch("http://127.0.0.1:5000/models")
-                .then(async response => {
-                    const data = await response.json();
-
-                    if (!response.ok) {
-                        const error = (data && data.message) || response.statusText;
-                        return Promise.reject(error);
-                    }
-
-                    this.models = data;
-                })
-                .catch(error => {
-                    this.errorMessage = error;
-                    console.error("There was an error!", error);
-                });
-
-        },
         methods: {
 
             navigateSearch() {
-                this.$router.push({
-                    name: 'EnterUser',
-                    params: {
-                        SSN: this.SSN
+                if (this.SSN == null) {
+                    alert('SSN should be selected!');
+                    return;
+                }
+                else if(this.SSN.length !=9){
+                    alert('SSN length must be 9')
+                } 
+                const url = 'http://127.0.0.1:5000/giris';
+                const requestOptions = {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(
+                    {
+                        "tc": this.SSN,
+                    })
+                }
+                fetch(url, requestOptions).
+                then(async response =>{
+                    const data = await response.json();
+                    if (!response.ok) {
+                    const error = (data && data.message) || response.statusText;
+                    return Promise.reject(error);
                     }
+                    console.log(data);
+                    if(data == "User not found."){
+                        alert(data)
+                        location.reload();
+                    }
+                    else{
+                        this.$router.push({
+                        name: 'EnterUser',
+                        params: {
+                            SSN: this.SSN
+                            }
+                        }); 
+                    }
+                })
+                .catch(error => {
+                    this.errorMessage = error;
+                    console.error("There was an error!", error);
                 });
             }
         }

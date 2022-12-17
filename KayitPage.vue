@@ -1,23 +1,23 @@
 <template>
-    <img src="@/assets/images.jpeg" />
+    <img src="@/assets/images.jpeg" class="image1" />
     <br />
-    <div style='heigth:100vh'>
-        <label style="margin-top: 15px; margin-left: 15px; margin-right: 10px; text-align: center;">SSN</label>
+    <div style='heigth:100vh' class="genel">
+        <label  style="margin-top: 5px; margin-left: 0px; margin-right: 10px; text-align: center;">SSN</label><br>
         <input style="border-style: solid; margin-top: 15px;" v-model="SSN" placeholder="Enter SSN" /><br>
 
-        <label style="margin-top: 5px;margin-right: 13px;margin-left: 15px;">Name</label>
+        <label style="margin-top: 5px;margin-right: 10px;margin-left: 0px;">Name</label><br>
         <input style="border-style: solid;margin-top: 5px;" v-model="Name" placeholder="Enter Name" /> <br>
 
-        <label style="margin-top: 5px; margin-right: 10px; margin-left: 15px; ">Surname</label>
+        <label style="margin-top: 5px; margin-right: 10px; margin-left:0px; ">Surname</label><br>
         <input style="border-style: solid;margin-top: 5px;" v-model="Surname" placeholder="Enter Surname" /> <br>
 
-        <label style="margin-top: 5px;margin-right: 10px;margin-left: 15px;">Birth Date</label>
+        <label style="margin-top: 5px;margin-right: 10px;margin-left: 0px;">Birth Date</label><br>
         <input style="border-style: solid;margin-top: 5px;" v-model="BirthDate" placeholder="Enter Birth Date" /> <br>
 
-        <label style="margin-top: 5px;margin-right: 10px; margin-left: 15px; ">Blood Group</label>
+        <label style="margin-top: 5px;margin-right: 10px; margin-left: 0px; ">Blood Group</label><br>
         <input style="border-style: solid;margin-top: 5px;" v-model="BloodGroup" placeholder="Enter Blood Group" /> <br>
 
-        <label style="margin-top: 5px;margin-right: 10px;margin-left: 15px;">Sex</label>
+        <label style="margin-top: 5px;margin-right: 10px;margin-left: 0px;">Sex</label><br>
         <input style="border-style: solid; margin-top: 5px;" v-model="Sex" placeholder="Enter Sex" /> <br>
 
         <a class="button-login" v-on:click="enter()">
@@ -46,10 +46,13 @@
         methods: {
 
             enter() {
-                if (this.SSN === "") {
+                if (this.SSN === null) {
                     alert('SSN should be selected!');
                     return;
-                } else if (this.Name === null) {
+                } 
+                else if(this.SSN.length !=9){
+                    alert('SSN length must be 9')
+                }else if (this.Name === null) {
                     alert('Name should be selected!');
                 } else if (this.Surname == null) {
                     alert('Surname should be selected!');
@@ -91,7 +94,7 @@
         }
     }
 
-</script>    >
+</script>
 
 <style scoped>
 
@@ -121,5 +124,16 @@
         font-size: 8px;
         vertical-align: middle;
     }
+    .image1 {
+         display: block;
+         margin-left: 42%;
+         margin-right: auto;
+        width: 15%;
+    }
+
+    .genel {
+        margin-left: 42%;
+    }
+
 </style>
 
